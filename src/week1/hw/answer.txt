@@ -1,0 +1,27 @@
+<?> Điều gì sẽ xảy ra khi người dùng chọn "Cancel"?
+- Hộp thoại sẽ hiển thị "You've chosen: No"
+bởi toán tử 3 ngôi chỉ so sánh biến option với
+JOptionPane.YES_OPTION (có giá trị nguyên là 0), các lựa chọn
+khác Yes đều sẽ hiển thị text là "No".
+
+<?> Làm thế nào để chỉ hiển thị 2 lựa chọn/thay đổi thông điệp của lựa chọn?
+- Để chỉ hiển thị 2 lựa chọn, ta thêm đối số OptionPane.YES_NO_OPTION vào
+hàm showConfirmDialog.
+
+int option = JOptionPane.showConfirmDialog(
+    null,
+    "Do you want to change to the first class ticket?",
+    "Confirm",
+    JOptionPane.YES_NO_OPTION);
+
+- Để thay đổi thông điệp của lựa chọn, ta thay hàm showConfirmDialog()
+bằng hàm showOptionDialog(). Hàm này yêu cầu phải truyền vào 1 mảng các
+chuỗi lựa chọn.
+
+String[] options = {"I do", "I don't"};
+int option = JOptionPane.showOptionDialog(null,
+    "Do you want to change to the first class ticket?",
+    "Customizing Options",
+    JOptionPane.DEFAULT_OPTION,
+    JOptionPane.QUESTION_MESSAGE,
+    null, options, options[0]);
