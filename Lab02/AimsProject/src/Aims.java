@@ -24,5 +24,20 @@ public class Aims {
 
         System.out.println("\nAttempting to remove 'Star Wars' again...");
         anOrder.removeDigitalVideoDisc(dvd2);
+
+        // section 14
+        // Nạp chồng với mảng
+        DigitalVideoDisc[] list = {
+                new DigitalVideoDisc("gao ranger"),
+                new DigitalVideoDisc("hachimichi remix")
+        };
+        anOrder.addDigitalVideoDisc(list);
+
+        // Nạp chồng với 2 tham số
+        DigitalVideoDisc d6 = new DigitalVideoDisc("obito");
+        DigitalVideoDisc d7 = new DigitalVideoDisc("mck");
+        anOrder.addDigitalVideoDisc(d6, d7);
+
+        anOrder.print();
     }
 }
