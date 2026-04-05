@@ -15,5 +15,14 @@ public class Aims {
         anOrder.addDigitalVideoDisc(dvd3);
 
         anOrder.print();
+        // section 13
+        System.out.println("\nRemoving 'Star Wars'...");
+        anOrder.removeDigitalVideoDisc(dvd2);
+
+        System.out.println("\nUpdated Cart:");
+        anOrder.print();
+
+        System.out.println("\nAttempting to remove 'Star Wars' again...");
+        anOrder.removeDigitalVideoDisc(dvd2);
     }
 }
