@@ -1,0 +1,19 @@
+9. <?> When should accessor methods be used?
+Theo tác giả Allen Holub, việc sử dụng các phương thức truy cập nên được sử dụng hạn chế tối đa nhằm bảo vệ tính đóng gói trong lập trình hướng đối tượng.
+Tuy nhiên vẫn có các trường hợp cụ thể mà ông khuyên dùng vì cần thiết và hợp lí:
+- Khi trả về 1 đối tượng dưới dạng Interface:
+    + Điều này giúp cô lập các thay đổi. Lập trình viên không cần chỉnh sửa quá nhiều khi 1 trong các thuộc tính của lớp cần cập nhật hoặc thay đổi, chỉ cần điều chỉnh định nghĩa của đối tượng được trả về để khớp với Interface là được.
+- Khi giao tiếp với các lớp thuộc tầng ranh giới (Procedural Boundary Layers):
+    + Các chương trình hướng đối tượng thường phải giao tiếp với các hệ thống thủ tục như hệ điều hành hoặc cơ sở dữ liệu, điển hình là JDBC.
+    + Do các nhà phát triển thư viện không thể dự đoán trước chính xác mục đích sử dụng dữ liệu của lập trình viên, họ buộc phải sử dụng các accessor để đảm bảo tính linh hoạt cần thiết khi sử dụng.
+- Trong các gói thư viện Java dùng chung (Generic Java Packages):
+    + Cũng giống với tầng ranh giới, các gói thư viện này phải được thiết kế với tính linh hoạt cao để phù hợp với mọi hoàn cảnh và mục đích sử dụng của lập trình viên sau này.
+    + Mặc dù các nhà phát triển luôn cố gắng ẩn đi càng nhiều chi tiết cài đặt bên trong càng tốt nhưng accessor vẫn là công cụ cần thiết để cung cấp khả năng truy cập dữ liệu cho người dùng. Đặc biệt là khi họ không thể dự đoán được mô hình động mà người dùng sử dụng.
+- Sử dụng cho các công cụ tự động và Introspection như JavaBeans:
+    + Accessor được tạo ra nhằm đánh dấu (tag) các thuộc tính để các công cụ tự động như UI-builders có thể nhận diện chúng thông qua cơ chế Introspection/Reflection.
+    + Tuy nhiên, các lập trình viên không được khuyến khích sử dụng các phương thức này vì dễ gây ảnh hưởng đến hệ thống, các phương thức này được tạo ra chỉ dành cho các công cụ tự động sử dụng thôi.
+
+10. <?> If you create a constructor method to build a DVD by title then create a constructor method to build
+        a DVD by category. Does JAVA allow you to do this?
+
+Câu trả lời là không vì cả 2 constructor này đều có chữ kí (signature) giống hệt nhau (cùng danh sách tham số). Khi ta cố thực hiện thì trình biên dịch sẽ báo lỗi.
