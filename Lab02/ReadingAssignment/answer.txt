@@ -22,3 +22,15 @@ Câu trả lời là không vì cả 2 constructor này đều có chữ kí (si
          arguments for dvd. Compared to an array parameter. What do you prefer in this case?
 
 Cách sử dụng Varargs linh hoạt hơn cách sử dụng mảng thông thường rất nhiều. Varargs cho phép truyền cả mảng và danh sách đối số vào tham số, trong khi sử dụng mảng không cho phép ta truyền danh sách đối số vào. Em thích sử dụng Varargs để truyền tham số cho phương thức hơn.
+
+15. <?> Is JAVA a Pass by Value or a Pass by Reference programming language?
+- After the call of swap(jungleDVD, cinderellaDVD) why does the title of these two
+objects still remain?
+C1: Tiêu đề 2 đối tượng vẫn giữ nguyên vì Java truyền tham số theo hình thức "truyền bản sao của tham chiếu" (pass by value of the reference).
+Khi hàm swap(obj1, obj2) được gọi, obj1 và obj2 chỉ là các bản sao của địa chỉ ô nhớ. Việc hoán đổi obj1 và obj2 bên trong hàm chỉ làm thay đổi các biến cục bộ (bản sao), hoàn toàn không ảnh hưởng đến các biến jungleDVD và cinderellaDVD gốc trong hàm main.
+
+- After the call of changeTitle(jungleDVD, cinderellaDVD.getTitle()) why is
+the title of the JungleDVD changed?
+C2: Mặc dù dvd là một bản sao của tham chiếu nhưng nó vẫn trỏ tới cùng 1 đối tượng trong bộ nhớ Heap. Khi gọi dvd.setTitle(title), ta đang truy cập trực tiếp vào vùng nhớ của đối tượng gốc để sửa đổi dữ liệu bên trong nó. Dòng lệnh dvd = new DigitalVideoDisc(oldTitle) ở cuối hàm chỉ làm cho biến cục bộ dvd trỏ sang 1 đối tượng mới, không làm ảnh hưởng hay thay thế được đối tượng gốc ở hàm main ban đầu.
+
+Từ đây, ta có thể trả lời câu hỏi lớn nhất: Java luôn là ngôn ngữ lập trình Pass by Value.
