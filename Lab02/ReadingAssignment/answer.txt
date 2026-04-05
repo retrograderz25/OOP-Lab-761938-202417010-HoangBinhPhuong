@@ -12,3 +12,8 @@ Tuy nhiên vẫn có các trường hợp cụ thể mà ông khuyên dùng vì 
 - Sử dụng cho các công cụ tự động và Introspection như JavaBeans:
     + Accessor được tạo ra nhằm đánh dấu (tag) các thuộc tính để các công cụ tự động như UI-builders có thể nhận diện chúng thông qua cơ chế Introspection/Reflection.
     + Tuy nhiên, các lập trình viên không được khuyến khích sử dụng các phương thức này vì dễ gây ảnh hưởng đến hệ thống, các phương thức này được tạo ra chỉ dành cho các công cụ tự động sử dụng thôi.
+
+10. <?> If you create a constructor method to build a DVD by title then create a constructor method to build
+        a DVD by category. Does JAVA allow you to do this?
+
+Câu trả lời là không vì cả 2 constructor này đều có chữ kí (signature) giống hệt nhau (cùng danh sách tham số). Khi ta cố thực hiện thì trình biên dịch sẽ báo lỗi.
