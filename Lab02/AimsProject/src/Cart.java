@@ -37,4 +37,14 @@ public class Cart {
         }
         return total;
     }
+
+    public void print() {
+        System.out.println("\nOrdered Items:");
+
+        for (int i = 0; i < qtyOrdered; i++) {
+            System.out.printf("%-3d %-30s $%5.2f\n",(i + 1), itemsOrdered[i].getTitle(), itemsOrdered[i].getCost());
+        }
+
+        System.out.printf("Total Cost: %22s $%.2f\n", " ", totalCost());
+    }
 }
