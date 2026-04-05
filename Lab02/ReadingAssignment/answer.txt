@@ -17,3 +17,8 @@ Tuy nhiên vẫn có các trường hợp cụ thể mà ông khuyên dùng vì 
         a DVD by category. Does JAVA allow you to do this?
 
 Câu trả lời là không vì cả 2 constructor này đều có chữ kí (signature) giống hệt nhau (cùng danh sách tham số). Khi ta cố thực hiện thì trình biên dịch sẽ báo lỗi.
+
+14.1 <?> Try to add a method addDigitalVideoDisc which allows to pass an arbitrary number of
+         arguments for dvd. Compared to an array parameter. What do you prefer in this case?
+
+Cách sử dụng Varargs linh hoạt hơn cách sử dụng mảng thông thường rất nhiều. Varargs cho phép truyền cả mảng và danh sách đối số vào tham số, trong khi sử dụng mảng không cho phép ta truyền danh sách đối số vào. Em thích sử dụng Varargs để truyền tham số cho phương thức hơn.
