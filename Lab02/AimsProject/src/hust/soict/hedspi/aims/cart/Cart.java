@@ -1,3 +1,7 @@
+package hust.soict.hedspi.aims.cart;
+
+import hust.soict.hedspi.aims.disc.DigitalVideoDisc;
+
 public class Cart {
     public static final int MAX_NUMBERS_ORDERED = 20;
     private DigitalVideoDisc itemsOrdered[] = new DigitalVideoDisc[MAX_NUMBERS_ORDERED];
@@ -29,8 +33,8 @@ public class Cart {
     }
 
     // 14.1 cách sử dụng tham số biến đổi (Varargs)
-//    public void addDigitalVideoDisc(DigitalVideoDisc... dvds) {
-//        for (DigitalVideoDisc disc : dvds) {
+//    public void addDigitalVideoDisc(hust.soict.hedspi.aims.disc.DigitalVideoDisc... dvds) {
+//        for (hust.soict.hedspi.aims.disc.DigitalVideoDisc disc : dvds) {
 //            if (qtyOrdered < MAX_NUMBERS_ORDERED) {
 //                itemsOrdered[qtyOrdered] = disc;
 //                qtyOrdered++;
