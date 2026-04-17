@@ -1,3 +1,8 @@
+package hust.soict.hedspi.aims;
+
+import hust.soict.hedspi.aims.cart.Cart;
+import hust.soict.hedspi.aims.disc.DigitalVideoDisc;
+
 public class Aims {
     public static void main(String[] args) {
         Cart anOrder = new Cart();
@@ -19,7 +24,7 @@ public class Aims {
         System.out.println("\nRemoving 'Star Wars'...");
         anOrder.removeDigitalVideoDisc(dvd2);
 
-        System.out.println("\nUpdated Cart:");
+        System.out.println("\nUpdated hust.soict.hedspi.aims.cart.Cart:");
         anOrder.print();
 
         System.out.println("\nAttempting to remove 'Star Wars' again...");
