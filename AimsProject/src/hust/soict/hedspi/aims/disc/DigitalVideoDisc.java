@@ -4,6 +4,9 @@ import hust.soict.hedspi.aims.media.Disc;
 import hust.soict.hedspi.aims.media.Playable;
 
 public class DigitalVideoDisc extends Disc implements Playable {
+    public DigitalVideoDisc() {
+        super();
+    }
 
     public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
         super(0, title, category, cost, length, director);
