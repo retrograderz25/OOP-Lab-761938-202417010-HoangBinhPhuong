@@ -81,12 +81,37 @@ public class Cart {
     }
 
     public void print() {
-        System.out.println("\nOrdered Items:");
-
+        System.out.println("***********************CART***********************");
+        System.out.println("Ordered Items:");
         for (int i = 0; i < qtyOrdered; i++) {
-            System.out.printf("%-3d %-30s $%5.2f\n",(i + 1), itemsOrdered[i].getTitle(), itemsOrdered[i].getCost());
+            System.out.println((i + 1) + ". " + itemsOrdered[i].toString());
         }
+        System.out.println("Total cost: " + totalCost() + " $");
+        System.out.println("***************************************************");
+    }
 
-        System.out.printf("Total Cost: %22s $%.2f\n", " ", totalCost());
+    // Tìm kiếm theo ID
+    public void search(int id) {
+        boolean found = false;
+        for (int i = 0; i < qtyOrdered; i++) {
+            if (itemsOrdered[i].getId() == id) {
+                System.out.println("Found match: " + itemsOrdered[i].toString());
+                found = true;
+                break;
+            }
+        }
+        if (!found) System.out.println("No DVD with ID " + id + " was found.");
+    }
+
+    // Tìm kiếm theo Tiêu đề
+    public void search(String title) {
+        boolean found = false;
+        for (int i = 0; i < qtyOrdered; i++) {
+            if (itemsOrdered[i].isMatch(title)) {
+                System.out.println("Found match: " + itemsOrdered[i].toString());
+                found = true;
+            }
+        }
+        if (!found) System.out.println("No DVD with title '" + title + "' was found.");
     }
 }
