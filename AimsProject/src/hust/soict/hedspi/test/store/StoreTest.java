@@ -2,23 +2,25 @@ package hust.soict.hedspi.test.store;
 
 import hust.soict.hedspi.aims.store.Store;
 import hust.soict.hedspi.aims.disc.DigitalVideoDisc;
+import hust.soict.hedspi.aims.media.Book;
+import hust.soict.hedspi.aims.media.CompactDisc;
 
 public class StoreTest {
     public static void main(String[] args) {
         Store store = new Store();
 
-        DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 87, 19.95f);
-        DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars", "Science Fiction", "George Lucas", 87, 24.95f);
-        DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladdin", "Animation", 18.99f);
+        DigitalVideoDisc dvd = new DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 87, 19.95f);
+        store.addMedia(dvd);
 
-        store.addDVD(dvd1);
-        store.addDVD(dvd2);
-        store.addDVD(dvd3);
+        Book book = new Book(1, "Java Programming", "Technology", 25.5f);
+        store.addMedia(book);
+
+        CompactDisc cd = new CompactDisc(2, "Greatest Hits", "Music", 15.0f, 60, "Various", "Queen");
+        store.addMedia(cd);
 
         System.out.println("\nTesting removal:");
-        store.removeDVD(dvd2);
+        store.removeMedia(book);
 
-        DigitalVideoDisc dvd4 = new DigitalVideoDisc("Cinderella");
-        store.removeDVD(dvd4);
+        store.printStore();
     }
 }
