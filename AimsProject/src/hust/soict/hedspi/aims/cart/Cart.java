@@ -1,81 +1,33 @@
 package hust.soict.hedspi.aims.cart;
 
-import hust.soict.hedspi.aims.disc.DigitalVideoDisc;
+import java.util.ArrayList;
+import hust.soict.hedspi.aims.media.Media;
 
 public class Cart {
-    public static final int MAX_NUMBERS_ORDERED = 20;
-    private DigitalVideoDisc itemsOrdered[] = new DigitalVideoDisc[MAX_NUMBERS_ORDERED];
+    private ArrayList<Media> itemsOrdered = new ArrayList<Media>();
 
-    private int qtyOrdered = 0;
-
-    public void addDigitalVideoDisc(DigitalVideoDisc disc) {
-        if (qtyOrdered < MAX_NUMBERS_ORDERED) {
-            itemsOrdered[qtyOrdered] = disc;
-            qtyOrdered++;
-            System.out.println("The disc has been added");
+    public void addMedia(Media media) {
+        if (!itemsOrdered.contains(media)) {
+            itemsOrdered.add(media);
+            System.out.println("The media has been added");
         } else {
-            System.out.println("The cart is almost full");
+            System.out.println("The media is already in the cart");
         }
     }
 
-    // 14.1: Nạp chồng bằng cách truyền một mảng các DVD
-    public void addDigitalVideoDisc(DigitalVideoDisc[] dvdList) {
-        for (DigitalVideoDisc disc : dvdList) {
-            if (qtyOrdered < MAX_NUMBERS_ORDERED) {
-                itemsOrdered[qtyOrdered] = disc;
-                qtyOrdered++;
-                System.out.println("The disc '" + disc.getTitle() + "' has been added.");
-            } else {
-                System.out.println("The cart is full. Cannot add '" + disc.getTitle() + "'.");
-                break;
-            }
-        }
-    }
-
-    // 14.1 cách sử dụng tham số biến đổi (Varargs)
-//    public void addDigitalVideoDisc(hust.soict.hedspi.aims.disc.DigitalVideoDisc... dvds) {
-//        for (hust.soict.hedspi.aims.disc.DigitalVideoDisc disc : dvds) {
-//            if (qtyOrdered < MAX_NUMBERS_ORDERED) {
-//                itemsOrdered[qtyOrdered] = disc;
-//                qtyOrdered++;
-//                System.out.println("The disc '" + disc.getTitle() + "' has been added.");
-//            } else {
-//                System.out.println("The cart is full. Cannot add '" + disc.getTitle() + "'.");
-//                break;
-//            }
-//        }
-//    }
-
-    // 14.2: Nạp chồng bằng cách truyền chính xác 2 tham số
-    public void addDigitalVideoDisc(DigitalVideoDisc dvd1, DigitalVideoDisc dvd2) {
-        if (qtyOrdered + 1 < MAX_NUMBERS_ORDERED) {
-            addDigitalVideoDisc(dvd1);
-            addDigitalVideoDisc(dvd2);
+    public void removeMedia(Media media) {
+        if (itemsOrdered.contains(media)) {
+            itemsOrdered.remove(media);
+            System.out.println("The media has been removed");
         } else {
-            System.out.println("Not enough space in cart for 2 discs.");
+            System.out.println("The media is not in the cart");
         }
-    }
-
-    public void removeDigitalVideoDisc(DigitalVideoDisc disc) {
-        for (int i = 0; i < qtyOrdered; i++) {
-            if (itemsOrdered[i] == disc) {
-                for (int j = i; j < qtyOrdered - 1; j++) {
-                    itemsOrdered[j] = itemsOrdered[j + 1];
-                }
-                itemsOrdered[qtyOrdered - 1] = null;
-                qtyOrdered--;
-                // Xóa và xếp các đĩa ở dưới lên
-                System.out.println("The disc has been removed");
-                return;
-            }
-        }
-        System.out.println("The disc is not in the cart");
     }
 
     public float totalCost() {
         float total = 0;
-        for (int i = 0; i < qtyOrdered; i++) {
-            total += itemsOrdered[i].getCost();
+        for (Media media : itemsOrdered) {
+            total += media.getCost();
         }
         return total;
     }
@@ -83,35 +35,10 @@ public class Cart {
     public void print() {
         System.out.println("***********************CART***********************");
         System.out.println("Ordered Items:");
-        for (int i = 0; i < qtyOrdered; i++) {
-            System.out.println((i + 1) + ". " + itemsOrdered[i].toString());
+        for (int i = 0; i < itemsOrdered.size(); i++) {
+            System.out.println((i + 1) + ". " + itemsOrdered.get(i).toString());
         }
         System.out.println("Total cost: " + totalCost() + " $");
         System.out.println("***************************************************");
-    }
-
-    // Tìm kiếm theo ID
-    public void search(int id) {
-        boolean found = false;
-        for (int i = 0; i < qtyOrdered; i++) {
-            if (itemsOrdered[i].getId() == id) {
-                System.out.println("Found match: " + itemsOrdered[i].toString());
-                found = true;
-                break;
-            }
-        }
-        if (!found) System.out.println("No DVD with ID " + id + " was found.");
-    }
-
-    // Tìm kiếm theo Tiêu đề
-    public void search(String title) {
-        boolean found = false;
-        for (int i = 0; i < qtyOrdered; i++) {
-            if (itemsOrdered[i].isMatch(title)) {
-                System.out.println("Found match: " + itemsOrdered[i].toString());
-                found = true;
-            }
-        }
-        if (!found) System.out.println("No DVD with title '" + title + "' was found.");
     }
 }
