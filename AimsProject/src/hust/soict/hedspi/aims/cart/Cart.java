@@ -41,4 +41,30 @@ public class Cart {
         System.out.println("Total cost: " + totalCost() + " $");
         System.out.println("***************************************************");
     }
+
+    public void search(int id) {
+        boolean found = false;
+        for (Media media : itemsOrdered) {
+            if (media.getId() == id) {
+                System.out.println("Found match: " + media.toString());
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("No media found with ID: " + id);
+        }
+    }
+
+    public void search(String title) {
+        boolean found = false;
+        for (Media media : itemsOrdered) {
+            if (media.isMatch(title)) {
+                System.out.println("Found match: " + media.toString());
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("No media found with title: " + title);
+        }
+    }
 }

@@ -9,6 +9,18 @@ public class DigitalVideoDisc extends Disc implements Playable {
         super(0, title, category, cost, length, director);
     }
 
+    public DigitalVideoDisc(String title) {
+        super(0, title, null, 0.0f, 0, null);
+    }
+
+    public DigitalVideoDisc(String title, String category, float cost) {
+        super(0, title, category, cost, 0, null);
+    }
+
+    public DigitalVideoDisc(String title, String category, String director, float cost) {
+        super(0, title, category, cost, 0, director);
+    }
+
     @Override
     public void play() {
         if (this.getLength() > 0) {

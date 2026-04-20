@@ -1,7 +1,14 @@
 package hust.soict.hedspi.aims;
 
 import hust.soict.hedspi.aims.cart.Cart;
+import hust.soict.hedspi.aims.media.Book;
+import hust.soict.hedspi.aims.media.CompactDisc;
 import hust.soict.hedspi.aims.disc.DigitalVideoDisc;
+import hust.soict.hedspi.aims.media.Media;
+import hust.soict.hedspi.aims.media.Track;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Aims {
     public static void main(String[] args) {
@@ -9,40 +16,29 @@ public class Aims {
 
         DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King",
                 "Animation", "Roger Allers", 87, 19.95f);
-        anOrder.addDigitalVideoDisc(dvd1);
+        anOrder.addMedia(dvd1);
 
         DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars",
                 "Science Fiction", "George Lucas", 87, 24.95f);
-        anOrder.addDigitalVideoDisc(dvd2);
+        anOrder.addMedia(dvd2);
 
-        DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladin",
-                "Animation", 18.99f);
-        anOrder.addDigitalVideoDisc(dvd3);
+        Book book1 = new Book(1, "Java Programming", "Technology", 15.99f);
+        book1.addAuthor("James Gosling");
+        anOrder.addMedia(book1);
+
+        CompactDisc cd1 = new CompactDisc(2, "Greatest Hits", "Music", 20.0f, 0, "Various", "Queen");
+        cd1.addTrack(new Track("Bohemian Rhapsody", 6));
+        cd1.addTrack(new Track("Don't Stop Me Now", 4));
+        anOrder.addMedia(cd1);
 
         anOrder.print();
-        // section 13
+
         System.out.println("\nRemoving 'Star Wars'...");
-        anOrder.removeDigitalVideoDisc(dvd2);
+        anOrder.removeMedia(dvd2);
 
-        System.out.println("\nUpdated hust.soict.hedspi.aims.cart.Cart:");
+        System.out.println("\nUpdated Cart:");
         anOrder.print();
 
-        System.out.println("\nAttempting to remove 'Star Wars' again...");
-        anOrder.removeDigitalVideoDisc(dvd2);
-
-        // section 14
-        // Nạp chồng với mảng
-        DigitalVideoDisc[] list = {
-                new DigitalVideoDisc("gao ranger"),
-                new DigitalVideoDisc("hachimichi remix")
-        };
-        anOrder.addDigitalVideoDisc(list);
-
-        // Nạp chồng với 2 tham số
-        DigitalVideoDisc d6 = new DigitalVideoDisc("obito");
-        DigitalVideoDisc d7 = new DigitalVideoDisc("mck");
-        anOrder.addDigitalVideoDisc(d6, d7);
-
-        anOrder.print();
+        System.out.println("\n--- Manually iterating through media list ---");
     }
 }

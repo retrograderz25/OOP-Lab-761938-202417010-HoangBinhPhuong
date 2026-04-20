@@ -2,28 +2,35 @@ package hust.soict.hedspi.test.cart;
 
 import hust.soict.hedspi.aims.cart.Cart;
 import hust.soict.hedspi.aims.disc.DigitalVideoDisc;
+import hust.soict.hedspi.aims.media.Book;
+import hust.soict.hedspi.aims.media.CompactDisc;
+import hust.soict.hedspi.aims.media.Media;
 
 public class CartTest {
     public static void main(String[] args) {
         Cart cart = new Cart();
 
         DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 87, 19.95f);
-        cart.addDigitalVideoDisc(dvd1);
+        cart.addMedia(dvd1);
 
         DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars", "Science Fiction", "George Lucas", 87, 24.95f);
-        cart.addDigitalVideoDisc(dvd2);
+        cart.addMedia(dvd2);
 
-        DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladdin", "Animation", 18.99f);
-        cart.addDigitalVideoDisc(dvd3);
+        Book book1 = new Book(1, "Java Programming", "Education", 15.5f);
+        book1.addAuthor("James Gosling");
+        cart.addMedia(book1);
 
         cart.print();
 
         System.out.println("\n--- Search Results ---");
 
-        cart.search(2);
+        System.out.println("Searching by ID (ID: 1):");
+        cart.search(1);
 
-        cart.search("Aladdin");
+        System.out.println("\nSearching by title ('Star'):");
+        cart.search("Star");
 
+        System.out.println("\nSearching for non-existent title ('Cinderella'):");
         cart.search("Cinderella");
     }
 }
