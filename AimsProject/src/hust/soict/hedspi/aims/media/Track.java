@@ -26,4 +26,19 @@ public class Track implements Playable {
             System.out.println("ERROR: Track '" + this.getTitle() + "' cannot be played because its length is non-positive!");
         }
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Track other = (Track) obj;
+
+        if (this.length != other.length) return false;
+        if (this.title == null) {
+            return other.title == null;
+        }
+        return this.title.equalsIgnoreCase(other.title);
+    }
 }
