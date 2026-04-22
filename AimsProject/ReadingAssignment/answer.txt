@@ -1,3 +1,4 @@
+# Lab02
 9. <?> When should accessor methods be used?
 Theo tác giả Allen Holub, việc sử dụng các phương thức truy cập nên được sử dụng hạn chế tối đa nhằm bảo vệ tính đóng gói trong lập trình hướng đối tượng.
 Tuy nhiên vẫn có các trường hợp cụ thể mà ông khuyên dùng vì cần thiết và hợp lí:
@@ -34,3 +35,6 @@ the title of the JungleDVD changed?
 C2: Mặc dù dvd là một bản sao của tham chiếu nhưng nó vẫn trỏ tới cùng 1 đối tượng trong bộ nhớ Heap. Khi gọi dvd.setTitle(title), ta đang truy cập trực tiếp vào vùng nhớ của đối tượng gốc để sửa đổi dữ liệu bên trong nó. Dòng lệnh dvd = new DigitalVideoDisc(oldTitle) ở cuối hàm chỉ làm cho biến cục bộ dvd trỏ sang 1 đối tượng mới, không làm ảnh hưởng hay thay thế được đối tượng gốc ở hàm main ban đầu.
 
 Từ đây, ta có thể trả lời câu hỏi lớn nhất: Java luôn là ngôn ngữ lập trình Pass by Value.
+
+# Lab03
+16.

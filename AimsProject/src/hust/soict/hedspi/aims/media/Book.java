@@ -25,4 +25,9 @@ public class Book extends Media {
     public void removeAuthor(String authorName) {
         authors.remove(authorName);
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " - Authors: " + authors.toString();
+    }
 }
