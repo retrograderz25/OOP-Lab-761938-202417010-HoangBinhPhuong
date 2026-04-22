@@ -6,6 +6,7 @@ public abstract class Media {
     public static final Comparator<Media> COMPARE_BY_TITLE_COST = new MediaComparatorByTitleCost();
     public static final Comparator<Media> COMPARE_BY_COST_TITLE = new MediaComparatorByCostTitle();
     private int id;
+    private static int nbMedia = 0;
     private String title;
     private String category;
     private float cost;
@@ -18,6 +19,8 @@ public abstract class Media {
         this.title = title;
         this.category = category;
         this.cost = cost;
+        nbMedia++;
+        this.id = nbMedia;
     }
 
     public int getId() { return id; }
