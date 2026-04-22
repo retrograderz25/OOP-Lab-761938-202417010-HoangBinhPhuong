@@ -1,6 +1,8 @@
 package hust.soict.hedspi.aims.cart;
 
 import java.util.ArrayList;
+import java.util.Collections;
+
 import hust.soict.hedspi.aims.media.Media;
 
 public class Cart {
@@ -66,5 +68,15 @@ public class Cart {
         if (!found) {
             System.out.println("No media found with title: " + title);
         }
+    }
+
+    public void sortByTitle() {
+        Collections.sort(itemsOrdered, Media.COMPARE_BY_TITLE_COST);
+        System.out.println("Cart has been sorted by title.");
+    }
+
+    public void sortByCost() {
+        Collections.sort(itemsOrdered, Media.COMPARE_BY_COST_TITLE);
+        System.out.println("Cart has been sorted by cost.");
     }
 }
