@@ -1,7 +1,4 @@
-package hust.soict.hedspi.aims.disc;
-
-import hust.soict.hedspi.aims.media.Disc;
-import hust.soict.hedspi.aims.media.Playable;
+package hust.soict.hedspi.aims.media;
 
 public class DigitalVideoDisc extends Disc implements Playable {
     public DigitalVideoDisc() {

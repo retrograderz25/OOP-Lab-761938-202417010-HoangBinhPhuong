@@ -45,4 +45,9 @@ public abstract class Media {
         }
         return this.title.equalsIgnoreCase(other.title);
     }
+
+    @Override
+    public String toString() {
+        return "ID: " + id + " - Title: " + title + " - Category: " + category + " - Cost: " + cost + " $";
+    }
 }

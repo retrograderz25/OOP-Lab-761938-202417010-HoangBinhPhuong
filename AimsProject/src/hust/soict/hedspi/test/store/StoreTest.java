@@ -1,7 +1,7 @@
 package hust.soict.hedspi.test.store;
 
 import hust.soict.hedspi.aims.store.Store;
-import hust.soict.hedspi.aims.disc.DigitalVideoDisc;
+import hust.soict.hedspi.aims.media.DigitalVideoDisc;
 import hust.soict.hedspi.aims.media.Book;
 import hust.soict.hedspi.aims.media.CompactDisc;
 
