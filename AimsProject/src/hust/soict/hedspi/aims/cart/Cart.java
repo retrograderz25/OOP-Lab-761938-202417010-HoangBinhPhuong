@@ -57,18 +57,18 @@ public class Cart {
         }
     }
 
-    public void search(String title) {
-        boolean found = false;
-        for (Media media : itemsOrdered) {
-            if (media.isMatch(title)) {
-                System.out.println("Found match: " + media.toString());
-                found = true;
-            }
-        }
-        if (!found) {
-            System.out.println("No media found with title: " + title);
-        }
-    }
+//    public void search(String title) {
+//        boolean found = false;
+//        for (Media media : itemsOrdered) {
+//            if (media.isMatch(title)) {
+//                System.out.println("Found match: " + media.toString());
+//                found = true;
+//            }
+//        }
+//        if (!found) {
+//            System.out.println("No media found with title: " + title);
+//        }
+//    }
 
     public void sortByTitle() {
         Collections.sort(itemsOrdered, Media.COMPARE_BY_TITLE_COST);
@@ -78,5 +78,19 @@ public class Cart {
     public void sortByCost() {
         Collections.sort(itemsOrdered, Media.COMPARE_BY_COST_TITLE);
         System.out.println("Cart has been sorted by cost.");
+    }
+
+    // Hàm tìm kiếm trả về đối tượng Media trong giỏ
+    public Media search(String title) {
+        for (Media media : itemsOrdered) {
+            if (media.isMatch(title)) {
+                return media;
+            }
+        }
+        return null;
+    }
+
+    public int getItemsCount() {
+        return itemsOrdered.size();
     }
 }
