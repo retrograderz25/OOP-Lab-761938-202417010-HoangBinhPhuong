@@ -53,3 +53,63 @@ C3: Sự khác biệt giữa Đa hình và Kế thừa trong Java là gì?
 Sự khác biệt chính giữa kế thừa và đa hình là mục đích của chúng:
 - Kế thừa tập trung vào cấu trúc: Nó cho phép một lớp chia sẻ thuộc tính và phương thức từ lớp khác để tránh lặp lại mã nguồn.
 - Đa hình tập trung vào hành vi: Nó cho phép một hành động (phương thức) thực hiện theo nhiều cách khác nhau tùy thuộc vào đối tượng đang thực hiện hành động đó.
+
+17. <?> Alternatively, to compare items in the cart, instead of using the Comparator class I have
+        mentioned, you can use the Comparable interface1 and override the compareTo()method. You can
+        refer to the Java docs to see the information of this interface.
+        Suppose we are taking this Comparable interface approach.
+        - What class should implement the Comparable interface?
+        - In those classes, how should you implement the compareTo()method to reflect the ordering that
+        we want?
+        - Can we have two ordering rules of the item (by title then cost and by cost then title) if we use this
+        Comparable interface approach?
+        - Suppose the DVDs have a different ordering rule from the other media types, that is by title, then
+        decreasing length, then cost. How would you modify your code to allow this?
+
+C1: Lớp nào nên thực hiện (implement) interface Comparable?
+    Lớp Media nên thực hiện Comparable<Media> và ghi đè phương thức compareTo().
+
+C2: Cách hiện thực phương thức compareTo() để phản ánh thứ tự mong muốn?
+    Ta ghi đè phương thức compareTo() trong lớp Media.
+    Giả sử thứ tự ưu tiên là Tiêu đề (Title) trước, sau đó đến Giá tiền (Cost).
+
+    @Override
+    public int compareTo(Media other) {
+        // So sánh tiêu đề trước
+        int titleDiff = this.getTitle().compareToIgnoreCase(other.getTitle());
+
+        if (titleDiff != 0) {
+            return titleDiff;
+        }
+
+        // Nếu tiêu đề giống nhau, ta so sánh đến giá tiền
+        return Float.compare(other.getCost(), this.getCost());
+    }
+
+C3: Dùng Comparable có thể có 2 quy tắc sắp xếp khác nhau không?
+    Không thể. Comparable dùng để định nghĩa một thứ tự tự nhiên (natural ordering) duy nhất cho lớp. Để có nhiều quy tắc sắp xếp, ta dùng Comparator.
+
+C4: Nếu DVDs có quy tắc sắp xếp riêng (Title -> Length giảm dần -> Cost) thì code cần điều chỉnh gì?
+    Khi sử dụng hướng tiếp cận Comparable ở lớp cha, ta có thể sửa đổi code trong phương thức compareTo() của lớp Media bằng cách sử dụng kiểm tra kiểu dữ liệu (instanceof).
+
+    Cách thực hiện:
+
+    Java
+    @Override
+    public int compareTo(Media other) {
+        // So sánh tiêu đề, áp dụng cho tất cả Media
+        int titleDiff = this.getTitle().compareToIgnoreCase(other.getTitle());
+        if (titleDiff != 0) return titleDiff;
+
+        // Nếu cả hai đều là DVD, so sánh thêm độ dài giảm dần
+        if (this instanceof DigitalVideoDisc && other instanceof DigitalVideoDisc) {
+            DigitalVideoDisc dvd1 = (DigitalVideoDisc) this;
+            DigitalVideoDisc dvd2 = (DigitalVideoDisc) other;
+
+            int lengthDiff = Integer.compare(dvd2.getLength(), dvd1.getLength());
+            if (lengthDiff != 0) return lengthDiff;
+        }
+
+        // So sánh giá
+        return Float.compare(other.getCost(), this.getCost());
+    }
