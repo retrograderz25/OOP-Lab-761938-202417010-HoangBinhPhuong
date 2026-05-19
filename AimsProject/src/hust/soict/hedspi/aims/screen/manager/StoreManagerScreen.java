@@ -9,14 +9,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import hust.soict.hedspi.aims.media.Book;
 import hust.soict.hedspi.aims.media.CompactDisc;
@@ -111,16 +104,22 @@ public class StoreManagerScreen extends JFrame {
 
     JPanel createCenter() {
         JPanel center = new JPanel();
-        center.setLayout(new GridLayout(3, 3, 2, 2));
+        center.setLayout(new GridLayout(0, 3, 2, 2));
 
         ArrayList<Media> mediaInStore = store.getItemsInStore();
-        int maxItems = Math.min(9, mediaInStore.size());
-        for (int i = 0; i < maxItems; i++) {
+        for (int i = 0; i < mediaInStore.size(); i++) {
             MediaStore cell = new MediaStore(mediaInStore.get(i));
             center.add(cell);
         }
 
-        return center;
+        JScrollPane scrollPane = new JScrollPane(center);
+        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
+
+        JPanel wrapper = new JPanel();
+        wrapper.setLayout(new BorderLayout());
+        wrapper.add(scrollPane, BorderLayout.CENTER);
+
+        return wrapper;
     }
 
     public static void main(String[] args) {
