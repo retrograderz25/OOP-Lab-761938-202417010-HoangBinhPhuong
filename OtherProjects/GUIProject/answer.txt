@@ -1,0 +1,23 @@
+Phần 1: So sánh chi tiết sự khác biệt giữa Swing và AWT
+
+1. Về Top-level Containers 
+- Trong AWT: 
+    + Thư viện này sử dụng lớp Frame làm Containers chính cho ứng dụng. 
+    + Các Component sẽ được thêm trực tiếp vào đối tượng Frame thông qua phương thức add().
+- Trong Swing: 
+    + Thư viện sử dụng JFrame để thay thế. 
+    + Điểm khác biệt lớn nhất là JFrame không cho phép thêm trực tiếp các thành phần lên nó do các thành phần Swing là loại lightweight. 
+    + Khi lập trình, ta bắt buộc phải lấy lớp nội dung trung gian gọi là content-pane bằng lệnh getContentPane rồi mới thực hiện add các thành phần lên lớp này.
+
+2. Về Component class names
+- Các Component trong AWT có tên gọi ngắn gọn và trực tiếp để mô tả chức năng như Label để hiển thị văn bản, TextField để nhập liệu hay Button để tạo nút bấm.
+- Các Component trong Swing được thiết kế để tương ứng hoàn toàn với AWT nhưng được đặt thêm tiền tố J ở phía trước tên lớp để phân biệt: JLabel, JTextField, JButton,..
+- Việc đặt tên này giúp lập trình viên dễ dàng nhận diện và chuyển đổi giữa hai thư viện.
+
+3. Về Event-handling
+- Mặc dù Swing là bộ thư viện ra đời sau và hiện đại hơn AWT nhưng nó không thay đổi cách thức xử lý tương tác người dùng. Swing sử dụng chung mô hình event-handling với AWT.
+- Cả hai thư viện đều dùng chung các giao diện và lớp sự kiện nằm trong gói thư viện java.awt.event. Ví dụ, khi người dùng nhấn Enter trong một ô nhập liệu hoặc nhấn một nút bấm, cả hai đều sử dụng ActionListener làm bộ lắng nghe và triển khai logic trong phương thức actionPerformed với tham số là ActionEvent.
+
+4. Về giao diện
+- Component AWT là heavyweight, phụ thuộc vào hệ điều hành nên với cùng một mã nguồn, khi chạy trên Windows sẽ có giao diện khác với khi chạy trên macOS hay Linux.
+- Component Swing là lightweight, được Java tự vẽ hoàn toàn. Ứng dụng sẽ có giao diện đồng nhất trên mọi nền tảng và cho phép tùy biến sâu hơn về giao diện.
