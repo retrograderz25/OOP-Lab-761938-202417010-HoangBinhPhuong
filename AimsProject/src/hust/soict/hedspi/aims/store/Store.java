@@ -24,6 +24,10 @@ public class Store {
         }
     }
 
+    public ArrayList<Media> getItemsInStore() {
+        return itemsInStore;
+    }
+
     public void printStore() {
         System.out.println("\n***********************STORE***********************");
         for (int i = 0; i < itemsInStore.size(); i++) {
