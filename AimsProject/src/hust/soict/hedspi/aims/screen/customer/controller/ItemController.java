@@ -1,5 +1,6 @@
 package hust.soict.hedspi.aims.screen.customer.controller;
 
+import hust.soict.hedspi.aims.cart.Cart;
 import hust.soict.hedspi.aims.media.Media;
 import hust.soict.hedspi.aims.media.Playable;
 import javafx.event.ActionEvent;
@@ -10,6 +11,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
 public class ItemController {
+
+    private Cart cart;
+    public ItemController(Cart cart) {
+        this.cart = cart;
+    }
 
     @FXML
     private Button btnAddToCart;
@@ -42,7 +48,10 @@ public class ItemController {
 
     @FXML
     void btnAddToCartClicked(ActionEvent event) {
-        // Sẽ xử lý thêm vào giỏ hàng ở các phần sau
+        if (media != null) {
+            cart.addMedia(media);
+            System.out.println("Đã thêm " + media.getTitle() + " vào giỏ.");
+        }
     }
 
     @FXML
