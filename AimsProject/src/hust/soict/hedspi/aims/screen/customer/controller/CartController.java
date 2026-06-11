@@ -1,6 +1,7 @@
 package hust.soict.hedspi.aims.screen.customer.controller;
 
 import hust.soict.hedspi.aims.cart.Cart;
+import hust.soict.hedspi.aims.exception.PlayerException;
 import hust.soict.hedspi.aims.media.Media;
 import hust.soict.hedspi.aims.media.Playable;
 import hust.soict.hedspi.aims.store.Store;
@@ -90,13 +91,26 @@ public class CartController {
 
     @FXML
     void btnPlayPressed(ActionEvent event) {
-        // Lấy sản phẩm đang được chọn trong bảng
         Media media = tblMedia.getSelectionModel().getSelectedItem();
-
-        // Kiểm tra xem có null và có Play được không
         if (media != null && media instanceof Playable) {
-            // Ép kiểu sang Playable và gọi hàm play()
-            ((Playable) media).play();
+            try {
+                // Thử phát media
+                ((Playable) media).play();
+
+                // (Tùy chọn) Hiện thông báo phát thành công
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Playing Media");
+                alert.setHeaderText("Now playing: " + media.getTitle());
+                alert.showAndWait();
+
+            } catch (PlayerException e) {
+                // Nếu bị lỗi (length <= 0) thì nhảy vào đây bắt lỗi
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Illegal Media Length");
+                alert.setHeaderText("Error: Media length is non-positive");
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
+            }
         }
     }
 

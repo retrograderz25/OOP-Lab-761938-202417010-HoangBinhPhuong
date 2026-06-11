@@ -40,6 +40,7 @@ public class TestViewStoreScreen extends Application {
         store.addMedia(new DigitalVideoDisc("Star Wars", "Sci-Fi", "George Lucas", 124, 24.95f));
         store.addMedia(new DigitalVideoDisc("Aladdin", "Animation", 18.99f));
         store.addMedia(new Book(1, "Java Programming", "Technology", 15.0f));
+        store.addMedia(new DigitalVideoDisc("Lỗi đĩa", "Animation", "Đạo diễn", 0, 10.0f)); // Độ dài bằng 0
 
         launch(args);
     }

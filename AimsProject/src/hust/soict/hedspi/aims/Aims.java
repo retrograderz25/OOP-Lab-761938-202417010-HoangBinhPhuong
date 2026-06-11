@@ -1,6 +1,7 @@
 package hust.soict.hedspi.aims;
 
 import hust.soict.hedspi.aims.cart.Cart;
+import hust.soict.hedspi.aims.exception.PlayerException;
 import hust.soict.hedspi.aims.media.*;
 import hust.soict.hedspi.aims.store.Store;
 import java.util.Scanner;
@@ -255,10 +256,17 @@ public class Aims {
         store.addMedia(cd);
     }
 
-    // Kiểm tra xem Media có thể phát không rồi thực hiện phát
     private static void playMedia(Media media) {
         if (media instanceof Playable) {
-            ((Playable) media).play();
+            try {
+                // Đưa hàm play() vào trong khối try
+                ((Playable) media).play();
+
+            } catch (PlayerException e) {
+                // Bắt lỗi và in ra màn hình console
+                System.out.println("Lỗi khi phát Media: " + e.getMessage());
+                // e.printStackTrace(); // Tùy chọn: In chi tiết lỗi
+            }
         } else {
             System.out.println("Lỗi: Sản phẩm '" + media.getTitle() + "' không hỗ trợ tính năng Play!");
         }
