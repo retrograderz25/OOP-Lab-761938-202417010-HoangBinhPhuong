@@ -1,11 +1,13 @@
 package hust.soict.hedspi.aims.screen.customer.controller;
 
 import hust.soict.hedspi.aims.cart.Cart;
+import hust.soict.hedspi.aims.exception.PlayerException;
 import hust.soict.hedspi.aims.media.Media;
 import hust.soict.hedspi.aims.media.Playable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -56,6 +58,21 @@ public class ItemController {
 
     @FXML
     void btnPlayClicked(ActionEvent event) {
-        // Sẽ xử lý hiện Dialog Play ở các phần sau
+        if (media != null && media instanceof Playable) {
+            try {
+                ((Playable) media).play();
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Playing Media");
+                alert.setHeaderText("Now playing: " + media.getTitle());
+                alert.showAndWait();
+            } catch (PlayerException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Illegal Media Length");
+                alert.setHeaderText("Error: Media length is non-positive");
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
+            }
+        }
     }
 }
